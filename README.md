@@ -1,5 +1,8 @@
 # CSV Reviewer
 
+This is the `codex/job-search` branch. See [Branches and local workspaces](docs/BRANCHES.md)
+for separate launch commands and the FlowSell review version.
+
 A local job-application workspace and general-purpose CSV/TSV viewer and editor. Open any UTF-8 CSV with a header row, browse its table, search records, and edit one record at a time. Column names and counts come from your file; no particular dataset or schema is required.
 
 See the [User guide](docs/USER_GUIDE.md) for workflows, supported files, and troubleshooting, and the [Developer guide](docs/DEVELOPMENT.md) for architecture and testing.
