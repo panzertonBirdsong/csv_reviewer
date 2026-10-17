@@ -26,19 +26,40 @@ filter can contain several values. Values within a filter are alternatives;
 different filters are combined. Empty filter selections mean all values.
 
 **Go to row** displays both the stable ID and title. **Table viewer** shows the main
-tracking fields by default; select **Show all columns** to see the full imported
-record. Select a table row and click **Review selected row** to open it.
+tracking fields and a wide description column with taller rows by default; select
+**Show all columns** to see the full imported record. Select a table row and click
+**Review selected row** to read or edit the complete description.
 
 Severity describes the reported impact. Priority describes scheduling urgency and
 is edited separately. Opening the tracker does not infer or change either field.
 Existing custom severity, priority, or status values remain selectable and are not
 silently normalized to one of the suggested options.
 
+The master backlog's initial priorities use this triage policy:
+
+- **Critical:** verify and address the known signing-key exposure immediately.
+- **High:** address serious access, accounting, data-loss, deployment, and blocked
+  core-workflow risks; verify conditional risks before deciding the remedy.
+- **Medium:** schedule other functional, validation, reliability, and supporting
+  refactoring work.
+- **Low:** handle minor edge cases, lower-impact optimizations, and routine cleanup.
+
+Reported severity is the starting point. Importance can raise priority: for example,
+silent payment loss, incorrect billing quantities, stock-deletion races, and actions
+on the wrong preview deserve High priority even where a report rated severity lower.
+An elevated priority does not turn a tentative finding into a confirmed defect.
+The six investigations retain their source-recommended High or Medium priorities.
+This is a one-time triage of the master; opening or saving a row does not auto-assign
+priorities, and new rows still require your assessment.
+
 ## Edit a row
 
-The main form contains classification, ownership, and status, followed by description,
-recommended action, resolution, and comments. Expand **Evidence, source details, and
-additional fields** for the remaining columns, including imported source ratings.
+The main form starts with a full-width, 320-pixel-tall description editor, followed by
+classification, ownership, status, recommended action, and comments. CSV files do not
+store display widths; the app supplies this reading layout. The master has no
+`resolution` column. **Comments** is reserved for your manually entered review notes.
+Expand **Evidence, source details, and additional fields** for the remaining columns,
+including imported source ratings.
 
 - **Save row** writes changes and stays on the row.
 - **Save & Previous** or **Save & Next** writes changes and advances in the current filtered list.

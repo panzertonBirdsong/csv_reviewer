@@ -16,7 +16,7 @@ STATUSES = ['Open (reported)', 'Not started', 'In progress', 'Blocked',
             'Duplicate', "Won't fix"]
 PRIMARY_FIELDS = ['issue_id', 'type', 'title', 'category', 'severity', 'priority',
                   'status', 'owner', 'created_date', 'last_modified_date']
-DETAIL_FIELDS = ['description', 'recommended_action', 'resolution', 'comments']
+DETAIL_FIELDS = ['description', 'recommended_action', 'comments']
 MANAGED_FIELDS = {'issue_id', 'created_date', 'last_modified_date'}
 
 

@@ -137,16 +137,21 @@ def main():
                 options = choices(defaults, value)
                 edited[column] = st.selectbox(label, options, index=options.index(value), key=key)
             elif column in DETAIL_FIELDS or len(value) > 100 or '\n' in value or '\r' in value:
-                edited[column] = st.text_area(label, value, height=120, key=key)
+                edited[column] = st.text_area(
+                    label, value, height=320 if column == 'description' else 120,
+                    key=key, width='stretch',
+                    help='Your own review notes.' if column == 'comments' else None,
+                )
             else:
                 edited[column] = st.text_input(label, value, key=key)
 
+        field('description')
         left, right = st.columns(2)
         for i, column in enumerate(c for c in PRIMARY_FIELDS if c in headers):
             with left if i % 2 == 0 else right:
                 field(column)
         for column in DETAIL_FIELDS:
-            if column in headers:
+            if column in headers and column != 'description':
                 field(column)
         remaining = [c for c in headers if c not in PRIMARY_FIELDS + DETAIL_FIELDS]
         if remaining:
@@ -193,10 +198,16 @@ def main():
     if view == 'Table viewer':
         st.subheader(f'Table · {len(visible)} of {len(rows)} rows')
         show_all = st.checkbox('Show all columns')
-        columns = headers if show_all else [c for c in PRIMARY_FIELDS if c in headers]
+        table_fields = [*PRIMARY_FIELDS[:3], 'description', *PRIMARY_FIELDS[3:]]
+        columns = headers if show_all else [c for c in table_fields if c in headers]
         table = pd.DataFrame([rows[i] for i in visible], columns=columns, dtype=str)
         selection = st.dataframe(table, width='stretch', hide_index=True, on_select='rerun',
-                                 selection_mode='single-row', key=f'table_{ss.revision}')
+                                 selection_mode='single-row', key=f'table_{ss.revision}',
+                                 row_height=100,
+                                 column_config={
+                                     'description': st.column_config.TextColumn('Description', width=600),
+                                     'title': st.column_config.TextColumn('Title', width=280),
+                                 })
         if selection.selection.rows:
             selected = rows[visible[selection.selection.rows[0]]]['issue_id']
             st.button('Review selected row', type='primary', on_click=navigate,

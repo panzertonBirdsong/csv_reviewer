@@ -11,7 +11,7 @@ HEADERS = ['issue_id', 'type', 'title', 'category', 'severity', 'priority', 'sta
            'source_reports', 'source_references', 'source_severities', 'severity_basis',
            'evidence_status', 'conditions', 'code_references', 'recommended_action',
            'comments', 'conversation_reference', 'report_date', 'reviewed_commit',
-           'consolidated_on', 'owner', 'resolution', 'imported_from']
+           'consolidated_on', 'owner', 'imported_from']
 
 
 def fixture_rows():
