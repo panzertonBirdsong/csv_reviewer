@@ -36,3 +36,5 @@ typing_extensions==4.16.0
 tzdata==2026.4
 urllib3==2.7.0
 wheel==0.47.0
+
+streamlit-pdf==2.1.0

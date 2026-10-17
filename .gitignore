@@ -3,3 +3,7 @@ __pycache__/
 *.pyc
 .streamlit/
 *_reviewed.csv
+
+.csv-reviewer-backups/
+.*.lock
+*_reviewed.tsv

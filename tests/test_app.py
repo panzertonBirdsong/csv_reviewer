@@ -20,8 +20,9 @@ class AppTests(unittest.TestCase):
                     (root / "sample.csv").write_text(source)
                     app = AppTest.from_file(str(app_path), default_timeout=15).run()
                     self.assertFalse(app.exception)
-                    app.radio[1].set_value(choice).run()
-                    app.button[0].click().run()
+                    next(field for field in app.radio if field.label == "File source").set_value("Project folder").run()
+                    next(field for field in app.radio if "verified" in field.label).set_value(choice).run()
+                    next(button for button in app.button if button.label == "Open for review").click().run()
                     self.assertFalse(app.exception)
                     output = root / "sample_reviewed.csv"
                     headers, rows = read_csv(output.read_bytes())
